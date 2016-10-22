@@ -1,1 +1,10 @@
-<p>Nothing here for the time being. Just a little {{'code' + '!'}}</p>
+<div ng-controller="PartyListCtrl">
+  <ul>
+    <li ng-repeat="party in parties">
+      <span>{{party.name}}</span>
+      <p>
+        {{party.description}}
+      </p>
+    </li>
+  </ul>
+</div>
