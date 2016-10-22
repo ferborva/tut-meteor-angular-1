@@ -2,6 +2,9 @@ import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 
 import template from './partiesList.html';
+import { Parties } from '../../../api/parties';
+import { name as PartyAdd } from '../partyAdd/partyAdd';
+import { name as RemoveParty } from '../removeParty/removeParty';
 
 class PartiesList {
   constructor($scope, $reactive) {
@@ -22,7 +25,9 @@ const name = 'partiesList';
 
 // Create the angular module
 export default angular.module(name, [
-  angularMeteor
+  angularMeteor,
+  PartyAdd,
+  RemoveParty
 ]).component(name, {
   template,
   controllerAs: name,
