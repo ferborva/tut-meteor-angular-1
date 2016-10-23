@@ -1,18 +1,38 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
+import uiRouter from 'angular-ui-router';
 
 import template from './socially.html';
 import { name as PartiesList } from '../partiesList/partiesList';
+import { name as PartyDetails } from '../partyDetails/partyDetails';
+import { name as Navigation } from '../navigation/navigation';
 
 class Socially {}
 
 const name = 'socially';
 
-export default angular.module(name, [
+const app = angular.module(name, [
   angularMeteor,
-  PartiesList
-]).component(name, {
+  uiRouter,
+  PartiesList,
+  PartyDetails,
+  Navigation
+]);
+
+app.component(name, {
   template,
   controllerAs: name,
   controller: Socially
 });
+
+app.config(config);
+
+function config($locationProvider, $urlRouterProvider){
+  'ngInject';
+
+  $locationProvider.html5Mode(true);
+
+  $urlRouterProvider.otherwise('/parties');
+}
+
+export default app;

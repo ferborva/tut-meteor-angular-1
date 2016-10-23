@@ -1,5 +1,6 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
+import uiRouter from 'angular-ui-router';
 
 import template from './partiesList.html';
 import { Parties } from '../../../api/parties';
@@ -24,12 +25,28 @@ class PartiesList {
 const name = 'partiesList';
 
 // Create the angular module
-export default angular.module(name, [
+const partiesListComp = angular.module(name, [
   angularMeteor,
+  uiRouter,
   PartyAdd,
   RemoveParty
-]).component(name, {
+]);
+
+partiesListComp.component(name, {
   template,
   controllerAs: name,
   controller: PartiesList
 });
+
+partiesListComp.config(config);
+
+function config($stateProvider){
+  'ngInject';
+
+  $stateProvider.state('parties', {
+    url: '/parties',
+    template: '<parties-list></parties-list>'
+  });
+}
+
+export default partiesListComp;

@@ -2,6 +2,10 @@
 
 Official meteor-angular tutorial using angular 1.
 
+## Project Structure and code style
+
+...
+
 #### Code Linting
 
 Lint configuration put in place:
