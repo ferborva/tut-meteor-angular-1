@@ -16,7 +16,8 @@ const app = angular.module(name, [
   uiRouter,
   PartiesList,
   PartyDetails,
-  Navigation
+  Navigation,
+  'accounts.ui'
 ]);
 
 app.component(name, {
@@ -27,12 +28,25 @@ app.component(name, {
 
 app.config(config);
 
+app.run(run);
+
 function config($locationProvider, $urlRouterProvider){
   'ngInject';
 
   $locationProvider.html5Mode(true);
 
   $urlRouterProvider.otherwise('/parties');
+}
+
+function run($rootScope, $state){
+  'ngInject';
+
+  $rootScope.$on('$stateChangeError', 
+    (event, toState, toParams, fromState, fromParams, error) => {
+      if (error === 'AUTH_REQUIRED') {
+        $state.go('parties');
+      }
+    })
 }
 
 export default app;

@@ -1,5 +1,7 @@
+import { extend } from 'underscore';
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
+import { Meteor } from 'meteor/meteor';
 
 import template from './partyAdd.html';
 import { Parties } from '../../../api/parties';
@@ -11,7 +13,7 @@ class PartyAdd {
 
   submit(){
     // Add a new party to the DB
-    // eslint-disable-next-line
+    extend(this.party, {owner: Meteor.userId()});
     Parties.insert(this.party);
     this.reset();
   }

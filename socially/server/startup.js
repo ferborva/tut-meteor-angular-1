@@ -2,7 +2,6 @@ import { Meteor } from 'meteor/meteor';
 import { Parties } from '../imports/api/parties';
 
 Meteor.startup(() => {
-  // eslint-disable-next-line
   if (Parties.find({}).count() === 0) {
     const parties = [
       {
@@ -18,7 +17,6 @@ Meteor.startup(() => {
     ];
 
     parties.forEach(party => {
-      // eslint-disable-next-line
       Parties.insert(party);
     });
   }
