@@ -13,7 +13,8 @@ describe('PartyDetails', () => {
     const party = {
       _id: 'partyId',
       name: 'Party Name',
-      description: 'Party Desc'
+      description: 'Party Desc',
+      public: 'true'
     }
     beforeEach(() => {
       inject(($rootScope, $componentController) => {
@@ -39,7 +40,8 @@ describe('PartyDetails', () => {
         expect(Parties.update.calls.mostRecent().args[1]).toEqual({
           $set: {
             name: party.name,
-            description: party.description
+            description: party.description,
+            public: party.public
           }
         });
       });

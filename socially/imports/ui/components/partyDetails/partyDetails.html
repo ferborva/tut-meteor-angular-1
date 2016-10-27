@@ -10,6 +10,10 @@
     Party Description:
   </label>
   <input type="text" ng-model="partyDetails.party.description" />
+  <label>
+    Public party?
+  </label>
+  <input type="checkbox" ng-model="partyDetails.party.public"/>
   <button ng-click="partyDetails.save()">Save!</button>
 </form>
 
