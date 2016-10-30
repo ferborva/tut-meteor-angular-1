@@ -1,4 +1,5 @@
 /* eslint-disable */
+import { Meteor } from 'meteor/meteor';
 import { name as PartyDetails } from '../partyDetails';
 import { Parties } from '../../../../api/parties';
 import 'angular-mocks';

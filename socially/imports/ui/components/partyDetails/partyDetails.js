@@ -15,12 +15,17 @@ class PartyDetails {
     this.partyId = $stateParams.partyId;
 
     this.subscribe('parties');
+    this.subscribe('users');
 
     this.helpers({
       party() {
         return Parties.findOne({
           _id: $stateParams.partyId
         });
+      },
+
+      users() {
+        return Meteor.users.find({});
       }
     });
   }
