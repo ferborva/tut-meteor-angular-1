@@ -5,13 +5,15 @@ import { check, Match } from 'meteor/check';
 import { Parties } from './collection';
 
 if (Meteor.isServer) {
-  Meteor.publish('parties', function (options) {
+  Meteor.publish('parties', function (options, searchString) {
     const optPattern = {
       sort: Match.Maybe(Object),
       limit: Match.Maybe(Number),
       skip: Match.Maybe(Number)
     }
     check(options, optPattern);
+    check(searchString, Match.Maybe(String));
+
 
     const selector = {
       $or: [
@@ -37,6 +39,13 @@ if (Meteor.isServer) {
         }
       ]
     };
+
+    if (searchString && searchString.length) {
+      selector.name = {
+        $regex: `.*${searchString}.*`,
+        $options: 'i'
+      };
+    }
 
     Counts.publish(this, 'numberOfParties', Parties.find(selector), {
       noReady: true

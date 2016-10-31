@@ -1,0 +1,37 @@
+import angular from 'angular';
+import angularMeteor from 'angular-meteor';
+
+import template from './partiesSort.html';
+
+class PartiesSort {
+	constructor() {
+		this.changed();
+	}
+
+	changed() {
+		this.onChange({
+			sort: {
+				[this.property]: parseInt(this.order)
+			}
+		});
+	}
+}
+
+const name = 'partiesSort';
+
+const pSort = angular.module(name, [
+	angularMeteor
+]);
+
+pSort.component(name, {
+	template,
+	bindings: {
+		onChange: '&',
+		property: '@',
+		order: '@'
+	},
+	controllerAs: name,
+	controller: PartiesSort
+});
+
+export default pSort;
