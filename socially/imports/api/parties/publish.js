@@ -11,7 +11,7 @@ if (Meteor.isServer) {
       limit: Match.Maybe(Number),
       skip: Match.Maybe(Number)
     }
-    check(options, optPattern);
+    check(options, Match.Maybe(optPattern));
     check(searchString, Match.Maybe(String));
 
 
