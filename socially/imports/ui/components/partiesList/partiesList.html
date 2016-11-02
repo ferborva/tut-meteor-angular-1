@@ -1,4 +1,7 @@
-<party-add></party-add>
+<party-add ng-show="partiesList.isLoggedIn"></party-add>
+<div ng-hide="partiesList.isLoggedIn">
+  Log in to create a party!
+</div>
 
 <input type="search" ng-model="partiesList.searchText" placeholder="Search" />
 
@@ -12,10 +15,16 @@
     <p>
       {{party.description}}
     </p>
-    <remove-party party="party"></remove-party>
-    <party-rsvp party="party"></party-rsvp>
+    <remove-party party="party" ng-show="partiesList.isOwner(party)"></remove-party>
+    <party-rsvp party="party" ng-show="partiesList.isLoggedIn"></party-rsvp>
+    <div ng-hide="partiesList.isLoggedIn">
+      <i>Sign in to RSVP for this party.</i>
+    </div>
     <party-rsvp-list rsvps="party.rsvps"></party-rsvp-list>
-    <party-unanswered party="party"></party-unanswered>
+    <party-unanswered party="party" ng-if="!party.public"></party-unanswered>
+    <div ng-if="party.public">
+      Everyone is invited!
+    </div>
     <party-creator party="party"></party-creator>
   </li>
 </ul>

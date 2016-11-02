@@ -9,7 +9,7 @@ import { name as PartyUninvited } from '../partyUninvited/partyUninvited';
 import { name as PartyCreator } from '../partyCreator/partyCreator';
 
 class PartyDetails {
-  constructor($stateParams, $scope, $reactive){
+  constructor($stateParams, $scope, $reactive) {
     'ngInject';
 
     $reactive(this).attach($scope);
@@ -28,14 +28,33 @@ class PartyDetails {
 
       users() {
         return Meteor.users.find({});
+      },
+
+      isLoggedIn() {
+        return !!Meteor.userId();
+      },
+
+      isOwner() {
+        if (!this.party) {
+          return false;
+        }
+
+        return this.party.owner === Meteor.userId();
       }
     });
   }
 
-  save(){
+  canInvite() {
+    if (!this.party) {
+      return false;
+    }
+    return !this.party.public && this.party.owner === Meteor.userId();
+  }
+
+  save() {
     Parties.update({
       _id: this.party._id
-    },{
+    }, {
       $set: {
         name: this.party.name,
         description: this.party.description,
@@ -69,7 +88,7 @@ partyDetailsComp.component(name, {
 
 partyDetailsComp.config(config);
 
-function config($stateProvider){
+function config($stateProvider) {
   'ngInject';
 
   $stateProvider.state('partyDetails', {

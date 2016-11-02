@@ -5,19 +5,19 @@
   <label>
     Party Name:
   </label>
-  <input type="text" ng-model="partyDetails.party.name" />
+  <input type="text" ng-model="partyDetails.party.name" ng-disabled="!partyDetails.isOwner"/>
   <label>
     Party Description:
   </label>
-  <input type="text" ng-model="partyDetails.party.description" />
+  <input type="text" ng-model="partyDetails.party.description" ng-disabled="!partyDetails.isOwner"/>
   <label>
     Public party?
   </label>
-  <input type="checkbox" ng-model="partyDetails.party.public"/>
+  <input type="checkbox" ng-model="partyDetails.party.public" ng-disabled="!partyDetails.isOwner"/>
   <button ng-click="partyDetails.save()">Save!</button>
 </form>
 
 <button ui-sref="parties">&lt;- Back</button>
 
-<party-uninvited party="partyDetails.party"></party-uninvited>
+<party-uninvited party="partyDetails.party" ng-show="partyDetails.canInvite()"></party-uninvited>
 <party-creator party="partyDetails.party"></party-creator>
