@@ -4,3 +4,6 @@ Maybe -
 {{ (partyRsvpList.rsvps | filter:{rsvp:'maybe'}).length }}
 No -
 {{ (partyRsvpList.rsvps | filter:{rsvp:'no'}).length }}
+<party-rsvp-users rsvps="partyRsvpList.rsvps" type="yes"></party-rsvp-users>
+<party-rsvp-users rsvps="partyRsvpList.rsvps" type="maybe"></party-rsvp-users>
+<party-rsvp-users rsvps="partyRsvpList.rsvps" type="no"></party-rsvp-users>

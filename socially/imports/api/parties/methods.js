@@ -32,7 +32,7 @@ export function invite(partyId, userId) {
   }
 
   if (party.owner !== this.userId) {
-    throw new Meteor.Error(404, 'No permission!');
+    throw new Meteor.Error(403, 'No permission!');
   }
 
   if (party.public) {
