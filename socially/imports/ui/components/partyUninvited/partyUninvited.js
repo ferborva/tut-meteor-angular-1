@@ -5,6 +5,7 @@ import { Meteor } from 'meteor/meteor';
  
 import template from './partyUninvited.html';
 import { name as UninvitedFilter } from '../../filters/uninvitedFilter';
+import { name as DisplayNameFilter } from '../../filters/displayNameFilter';
  
 class PartyUninvited {
   constructor($scope) {
@@ -18,15 +19,27 @@ class PartyUninvited {
       }
     });
   }
+
+  invite(user) {
+    Meteor.call('invite', this.party._id, user._id, (error) => {
+      if (error) {
+        console.log(`Unable to perform invite task. Error Code: ${error.error}`);
+      } else {
+        console.log('Invited');
+      }
+    });
+  }
 }
  
 const name = 'partyUninvited';
- 
-// create a module
-export default angular.module(name, [
+
+const cmp = angular.module(name, [
   angularMeteor,
-  UninvitedFilter
-]).component(name, {
+  UninvitedFilter,
+  DisplayNameFilter
+]);
+
+cmp.component(name, {
   template,
   controllerAs: name,
   bindings: {
@@ -34,3 +47,5 @@ export default angular.module(name, [
   },
   controller: PartyUninvited
 });
+
+export default cmp;

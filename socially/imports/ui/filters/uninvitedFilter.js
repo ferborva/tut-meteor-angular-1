@@ -14,8 +14,10 @@ function UninvitedFilter(users, party) {
   });
 }
  
-// create a module
-export default angular.module(name, [])
-  .filter(name, () => {
-    return UninvitedFilter;
-  });
+const filt = angular.module(name, []);
+
+filt.filter(name, () => {
+  return UninvitedFilter;
+});
+
+export default filt;

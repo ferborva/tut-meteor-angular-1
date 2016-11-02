@@ -36,6 +36,16 @@ if (Meteor.isServer) {
               owner: { $exists: true }
             }
           ]
+        },
+        {
+          $and: [
+            {
+              invited: this.userId
+            },
+            {
+              invited: { $exists: true }
+            }
+          ]
         }
       ]
     };

@@ -6,6 +6,7 @@ import { Meteor } from 'meteor/meteor';
 import template from './partyDetails.html';
 import { Parties } from '../../../api/parties';
 import { name as PartyUninvited } from '../partyUninvited/partyUninvited';
+import { name as PartyCreator } from '../partyCreator/partyCreator';
 
 class PartyDetails {
   constructor($stateParams, $scope, $reactive){
@@ -56,6 +57,7 @@ const name = 'partyDetails';
 const partyDetailsComp = angular.module(name, [
   angularMeteor,
   uiRouter,
+  PartyCreator,
   PartyUninvited
 ]);
 
