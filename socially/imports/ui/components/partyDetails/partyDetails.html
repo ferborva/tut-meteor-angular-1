@@ -1,25 +1,35 @@
-<h4>
-  Details of your selected party:
-</h4>
-<form>
-  <label>
-    Party Name:
-  </label>
-  <input type="text" ng-model="partyDetails.party.name" ng-disabled="!partyDetails.isOwner"/>
-  <label>
-    Party Description:
-  </label>
-  <input type="text" ng-model="partyDetails.party.description" ng-disabled="!partyDetails.isOwner"/>
-  <label>
-    Public party?
-  </label>
-  <input type="checkbox" ng-model="partyDetails.party.public" ng-disabled="!partyDetails.isOwner"/>
-  <button ng-click="partyDetails.save()">Save!</button>
-</form>
-
-<button ui-sref="parties">&lt;- Back</button>
-
-<party-uninvited party="partyDetails.party" ng-show="partyDetails.canInvite()"></party-uninvited>
-<party-creator party="partyDetails.party"></party-creator>
-
-<party-map location="partyDetails.party.location"></party-map>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6">
+      <form>
+        <fieldset class="form-group">
+          <label>Party name</label>
+          <input type="text" ng-model="partyDetails.party.name" ng-disabled="!partyDetails.isOwner" class="form-control"/>
+        </fieldset>
+ 
+        <fieldset class="form-group">
+          <label>Description</label>
+          <input type="text" ng-model="partyDetails.party.description" ng-disabled="!partyDetails.isOwner" class="form-control"/>
+        </fieldset>
+ 
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" ng-model="partyDetails.party.public" ng-disabled="!partyDetails.isOwner"/>
+            Public Party?
+          </label>
+        </div>
+ 
+        <button ng-click="partyDetails.save()" type="submit" class="btn btn-primary">Save</button>
+      </form>
+    </div>
+    <div class="col-md-6">
+      <party-map location="partyDetails.party.location"></party-map>
+    </div>
+  </div>
+ 
+  <div class="row">
+    <div class="col-md-6">
+      <party-uninvited party="partyDetails.party" ng-show="partyDetails.canInvite()"></party-uninvited>
+    </div>
+  </div>
+</div>
