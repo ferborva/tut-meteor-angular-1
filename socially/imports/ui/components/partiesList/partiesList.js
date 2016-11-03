@@ -15,6 +15,7 @@ import { name as PartyCreator } from '../partyCreator/partyCreator';
 import { name as PartyRsvp } from '../partyRsvp/partyRsvp';
 import { name as PartyRsvpList } from '../partyRsvpList/partyRsvpList';
 import { name as PartiesMap } from '../partiesMap/partiesMap';
+import { name as PartyAddButton } from '../partyAddButton/partyAddButton';
 
 class PartiesList {
   constructor($scope, $reactive) {
@@ -79,6 +80,7 @@ const partiesListComp = angular.module(name, [
   utilsPagination,
   PartiesSort,
   PartyAdd,
+  PartyAddButton,
   RemoveParty,
   PartyCreator,
   PartyRsvp,
